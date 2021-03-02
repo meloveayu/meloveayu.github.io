@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":true,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="前天晚上和昨天晚上，为自己的博客配置了自己的域名，使用了 cloudflare 的免费 CDN 服务加速网站访问，还大费周章的调整了访问节点，速度快了不少，但是也不能期望太高。 😂">
+<meta property="og:type" content="article">
+<meta property="og:title" content="针对博客的访问方面的改动">
+<meta property="og:url" content="http://example.com/2020/03/17/%E9%92%88%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%96%B9%E9%9D%A2%E7%9A%84%E6%94%B9%E5%8A%A8/index.html">
+<meta property="og:site_name" content="远之松的小窝">
+<meta property="og:description" content="前天晚上和昨天晚上，为自己的博客配置了自己的域名，使用了 cloudflare 的免费 CDN 服务加速网站访问，还大费周章的调整了访问节点，速度快了不少，但是也不能期望太高。 😂">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-17T03:03:28.000Z">
+<meta property="article:modified_time" content="2021-03-02T03:41:07.614Z">
+<meta property="article:author" content="远之松">
+<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="CDN">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://example.com/2020/03/17/%E9%92%88%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%96%B9%E9%9D%A2%E7%9A%84%E6%94%B9%E5%8A%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>针对博客的访问方面的改动 | 远之松的小窝</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">远之松的小窝</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Keep on writing</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/03/17/%E9%92%88%E5%AF%B9%E5%8D%9A%E5%AE%A2%E7%9A%84%E8%AE%BF%E9%97%AE%E6%96%B9%E9%9D%A2%E7%9A%84%E6%94%B9%E5%8A%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="远之松">
+      <meta itemprop="description" content="博客，分享">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="远之松的小窝">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          针对博客的访问方面的改动
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-17 11:03:28" itemprop="dateCreated datePublished" datetime="2020-03-17T11:03:28+08:00">2020-03-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-02 11:41:07" itemprop="dateModified" datetime="2021-03-02T11:41:07+08:00">2021-03-02</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%9E%E7%94%A8%E5%B0%8F%E6%96%87%E7%AB%A0/" itemprop="url" rel="index"><span itemprop="name">实用小文章</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>前天晚上和昨天晚上，为自己的博客配置了自己的域名，使用了 cloudflare 的免费 CDN 服务加速网站访问，还大费周章的调整了访问节点，速度快了不少，但是也不能期望太高。 😂</p>
+<span id="more"></span>
+
+<p>今天上午看点数学，越看越困，干脆先放一放，总结一下做的事。<br>首先是配置域名的事，这个简单，要是有国外支付手段的话可以去买国外的域名，国内的也就是多了个上传个人身份信息备案的步骤，价格上只要你不买什么特牛逼的域名，也挺便宜的，像 xyz 这种新顶级域名，只要 6 块钱注册费，以后每年续费大概也就是 60 多块，自己看着买就行了。<br>关于域名解析的问题，简单来说就是把域名指向你的网站，在你买域名的注册商那里配置就行，解析规则配置也挺简单的，像是 A 策略就是把域名指向服务器的 ipv4 地址，CNAME 就是把域名指向另一个域名什么的……因为我博客仅仅是一个 Github Page，配置 CNAME 即可，二级域名就设了 www 和@两个。在你的网页仓库里同时也要在设置里添加自己的域名，这时会在根目录下生成 CNAME 文件，里面正是你的域名。做完这些大概等一段时间生效就可以用自己的域名访问到博客页面了。<br><strong>补充：这篇文章发上去之后，发现自己访问绑定的域名直接 404，访问原域名倒还行，一看是<code>hexo d</code>命令在上传生成的 public 文件夹时候直接把 CNAME 文件给覆盖没了……解决方法是在工程里的 source 文件夹里写 CNAME 文件，这样生成 public 文件夹时就会把它原封不动搬过去，不会丢了。</strong><br>做完这些其实我已经很满意了，但是想起之前把博客地址发给朋友看，朋友死活打不开的问题……😳 我还是上网搜了搜怎么加速页面访问速度，结果看到了 CDN，而且有免费的，可以白嫖，令人内心无比感激。😀<br><strong>CDN 指内容分发网络，指的是服务提供商把你的网站文件定期拷贝就近放在他家服务器里，访问者访问时可以就近访问，以此加快访问速度。</strong><br>首先国内免费的 CDN 不少,目前看看，感觉又拍云的不错，挂上他家 logo，还可以每年送你流量包，还支持 https……（太好了，穷学生感激落泪……就是我域名备案太晚，死活不给过……）结果选了 cloudflare，一家美国的全球 CDN 提供商。<br>总的来说 cloudflare 的服务很好，即使你不用他的 CDN 服务，他免费版提供的安全保护也是很强的（虽然我这小网站确实是没啥可保护的，但是有总比没有好啊），但是这么说的另一方面就是说他家的 CDN 服务在中国境内有点平庸，在国外倒是非常好……😅 不过白嫖的瓜你还要说不甜着实是过分了点，先配置起来再说。<br>总的来说非常简单，去 cloudflare 注册账户，然后输入你想开启 CDN 服务的域名，选上免费版服务，然后按他的要求将你的域名 dns 服务器改成他家的（说实话这家 CDN 修改 DNS 服务器有点别具一格的特色，但在国内还是不太行，之后解决这个问题），就这么简单，然后你就得重新在 cloudflare 再配置一遍域名解析。然后就成了。👌 感觉好的地方是首先你开 https 服务，SSL 证书不用像国内那样去申请，直接就有了，你还可以在安全配置里各种有用的安全配置拉满，连页面规则都可以设置三个（虽然完全不懂怎么设置），感觉巨贴心。<br>测试一下当然速度还是有一点点提升的，从完全超时到可以勉强上去，稍微强了一点。<br>但是不能满意，cloudflare 的 dns 解析总是绕开中国跑去美国的节点访问……所以该慢还是慢，需要采取措施来将节点调整到最近的香港节点。简单来说，中国有 cloudflare 的联营伙伴，可以绑定 cloudflare 的账号，更加细化地选择节点。<br>我选择的是笨牛网这家联营平台，个人感觉就是个 cloudflare 的中国版控制台，安全策略都可以在上面直接改动。你绑定了 cloudflare 的账号也可以管理上面的服务。这里的话就直接把接入方式改成笨牛网的 CNAME 接入，这个时候你就需要在笨牛网配置解析规则了，照抄 cloudflare 上的，之后可以把域名的 dns 服务器换回先前的了……（得，又回去了）再在域名的解析规则里，条数不变，类型不变，指向的是笨牛网配置完解析规则后提供的以<code>cdn.cloudflare.net</code>结尾的回源地址，然后就完成了。个人理解是访问的过程中加了一层中间层，跳转了两个 dns，大概吧。🤔<br>测试了一下，速度不错，200ms 左右延时，比较满意了。<br>这一通操作下来，感觉还学了不少嘛！😄</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Hexo/" rel="tag"># Hexo</a>
+              <a href="/tags/CDN/" rel="tag"># CDN</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/15/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%9A%E9%9C%80%E6%B1%82%E5%92%8C%E9%9C%80%E6%B1%82%E8%A7%84%E7%BA%A6/" rel="prev" title="软件工程学习笔记：需求和需求规约">
+      <i class="fa fa-chevron-left"></i> 软件工程学习笔记：需求和需求规约
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/18/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E7%AC%94%E8%AE%B0%EF%BC%9A%E7%BB%93%E6%9E%84%E5%8C%96%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95/" rel="next" title="软件工程笔记：结构化分析方法">
+      软件工程笔记：结构化分析方法 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="远之松"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">远之松</p>
+  <div class="site-description" itemprop="description">博客，分享</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">远之松</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/theme-next/theme-next-pjax@0/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+    </div>
+  <link rel="stylesheet" href="/dist/APlayer.min.css">
+  <div id="aplayer"></div>
+  <script type="text/javascript" src="/dist/APlayer.min.js"></script>
+  <script type="text/javascript" src="/dist/music.js"></script>
+</body>
+</html>
